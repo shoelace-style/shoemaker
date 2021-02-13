@@ -8,6 +8,7 @@ export { svg } from 'uhtml';
 
 export abstract class Shoemaker extends HTMLElement {
   static tag: string;
+  static dependencies: string[];
   static props: string[] = [];
   static reflect: string[] = [];
   static styles = '';
@@ -104,7 +105,6 @@ export abstract class Shoemaker extends HTMLElement {
   }
 
   private renderToDOM() {
-    console.log('render', this);
     const html = this.render();
 
     if (html) {
