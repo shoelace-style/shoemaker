@@ -1,9 +1,9 @@
 import { getAttrName, getAttrValue } from './utilities/attributes';
 import { getPropName, getPropValue, reservedProperties } from './utilities/properties';
-import { html, render as renderTemplate } from 'uhtml';
+import { html, render as renderTemplate, Hole } from 'uhtml';
 
 export { classMap, styleMap } from './utilities/directives';
-export { html, svg } from 'uhtml';
+export { html, svg, Hole } from 'uhtml';
 
 export abstract class Shoemaker extends HTMLElement {
   static tag: string;
@@ -61,6 +61,7 @@ export abstract class Shoemaker extends HTMLElement {
       }
     });
 
+    this.onBeforeMount();
     this.isMounted = true;
     this.renderToDOM();
     this.onMount();
@@ -116,14 +117,19 @@ export abstract class Shoemaker extends HTMLElement {
     }
   }
 
+  /** Called after the component has been connected to the DOM and before the initial render. At this point, the
+   * component's internals are not available in the DOM. This is a good place to fetch data and override initial props.
+   */
+  public onBeforeMount() {}
+
   /** Called after the component has initialized and the first render has occurred. */
   public onMount() {}
 
   /** Called when the component is removed from the DOM. */
   public onDestroy() {}
 
-  /** Renders the component.  */
-  public render(): any | undefined {
+  /** Renders the component. */
+  public render(): Hole | undefined {
     return undefined;
   }
 
