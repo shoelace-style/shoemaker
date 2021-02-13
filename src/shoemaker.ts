@@ -1,10 +1,9 @@
 import { getAttrName, getAttrValue } from './utilities/attributes';
 import { getPropName, getPropValue, reservedProperties } from './utilities/properties';
-import { html as createTemplate, render as renderTemplate } from 'uhtml';
+import { html, render as renderTemplate } from 'uhtml';
 
 export { classMap, styleMap } from './utilities/directives';
-export { html } from './utilities/render';
-export { svg } from 'uhtml';
+export { html, svg } from 'uhtml';
 
 export abstract class Shoemaker extends HTMLElement {
   static tag: string;
@@ -105,13 +104,15 @@ export abstract class Shoemaker extends HTMLElement {
   }
 
   private renderToDOM() {
-    const html = this.render();
+    const template = this.render();
 
-    if (html) {
+    if (template) {
       const { styles } = this.constructor as typeof Shoemaker;
-      const stylesheet = `<style>${styles}</style>`;
-      const template = createTemplate(html.strings.concat(stylesheet), ...html.values.concat(''));
-      renderTemplate(this.shadowRoot!, template);
+      const stylesheet = html`<style>
+        ${styles}
+      </style>`;
+
+      renderTemplate(this.shadowRoot!, html`${stylesheet} ${template}`);
     }
   }
 
