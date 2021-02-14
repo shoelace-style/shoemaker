@@ -129,7 +129,7 @@ export abstract class Shoemaker extends HTMLElement {
   public onDestroy() {}
 
   /** Renders the component. */
-  public render(): Hole | undefined {
+  public render(): Hole | string | undefined {
     return undefined;
   }
 
