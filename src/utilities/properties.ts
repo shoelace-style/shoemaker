@@ -22,7 +22,6 @@ export const reservedProperties = [
   'hidden',
   'id',
   'lang',
-  'spellcheck',
   'style',
   'tabindex',
   'title',
