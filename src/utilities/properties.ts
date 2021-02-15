@@ -13,4 +13,18 @@ export function getPropValue(attrValue: string | null) {
   }
 }
 
-export const reservedProperties = ['id', 'class'].concat(Object.keys(HTMLElement.prototype));
+export const reservedProperties = [
+  'accesskey',
+  'class',
+  'contenteditable',
+  'dir',
+  'draggable',
+  'hidden',
+  'id',
+  'lang',
+  'spellcheck',
+  'style',
+  'tabindex',
+  'title',
+  'translate'
+];
