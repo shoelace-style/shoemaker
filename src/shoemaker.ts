@@ -16,6 +16,7 @@ export abstract class Shoemaker extends HTMLElement {
     return this.props.map(prop => getAttrName(prop));
   }
 
+  private initialProps: { [key: string]: any } = {};
   private isMounted = false;
   private isRenderScheduled = false;
   private props: { [key: string]: any } = {};
@@ -26,16 +27,18 @@ export abstract class Shoemaker extends HTMLElement {
 
     const { props } = this.constructor as typeof Shoemaker;
 
-    // Define getters and setters for props
     props.map(prop => {
       if (reservedProperties.includes(prop)) {
         throw new Error(`Invalid prop name: "${prop}" is a reserved property`);
       }
 
+      // Store initial prop values so we can restore them after the subclass' constructor runs. This lets us set default
+      // values for components but prevents those values from overriding user-defined values when elements are created.
       if (this.hasOwnProperty(prop)) {
-        throw new Error(`Invalid prop name: "${prop}" has already been declared`);
+        this.initialProps[prop] = (this as any)[prop];
       }
 
+      // Define getters and setters for props
       Object.defineProperty(this, prop, {
         get: () => this.props[prop],
         set: (newValue: any) => {
@@ -59,6 +62,12 @@ export abstract class Shoemaker extends HTMLElement {
       if (this.hasAttribute(attr)) {
         this.props[prop] = getPropValue(this.getAttribute(attr));
       }
+    });
+
+    // Restore user-defined props. By design, props that exist on the object during instantiation will overwrite default
+    // values and attributes that are set on the element.
+    Object.keys(this.initialProps).map((prop: string) => {
+      (this as any)[prop] = this.initialProps[prop];
     });
 
     this.onBeforeMount();
