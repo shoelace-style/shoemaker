@@ -13,8 +13,9 @@ export function styleMap(styles: { [key: string]: any }) {
   let result: string[] = [];
 
   Object.keys(styles).map(key => {
-    const name = key.replace(/[A-Z]/g, m => `-${m.toLowerCase()}`).replace(/^-/, '');
     if (styles[key]) {
+      const isCustomProperty = /^--/.test(key);
+      const name = isCustomProperty ? key : key.replace(/[A-Z]/g, m => `-${m.toLowerCase()}`).replace(/^-/, '');
       result.push(`${name}: ${styles[key]}`);
     }
   });
