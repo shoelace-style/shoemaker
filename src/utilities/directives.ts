@@ -9,9 +9,15 @@ export function classMap(classes: any) {
   return result.join(' ');
 }
 
-export function styleMap(styles: any) {
+export function styleMap(styles: { [key: string]: any }) {
   let result: string[] = [];
-  Object.keys(styles).map(key => result.push(`${key}: ${styles[key]}`));
 
-  return result.join('; ');
+  Object.keys(styles).map(key => {
+    const name = key.replace(/[A-Z]/g, m => `-${m.toLowerCase()}`).replace(/^-/, '');
+    if (styles[key]) {
+      result.push(`${name}: ${styles[key]}`);
+    }
+  });
+
+  return result.join('; ') + (result.length ? ';' : '');
 }
