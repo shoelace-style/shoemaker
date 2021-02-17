@@ -348,17 +348,17 @@ class MyEmit extends Shoemaker {
 }
 ```
 
-The `emit()` method accepts an optional second argument of `CustomEventInit` options:
+The `emit()` method accepts an optional second argument of `CustomEventInit` options (default values shown):
 
 ```ts
 this.emit('my-click', {
-  bubbles: false,
-  cancelable: false,
-  composed: false,
+  bubbles: true,
+  cancelable: true,
+  composed: true,
   detail: {
     /* this is where you can pass custom data to your event */
   }
-})
+});
 ```
 
 ### Methods

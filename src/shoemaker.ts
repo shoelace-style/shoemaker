@@ -163,7 +163,30 @@ export abstract class Shoemaker extends HTMLElement {
 
   /** Dispatches a custom event from the host element. */
   public emit(eventName: string, eventOptions?: CustomEventInit) {
-    const event = new CustomEvent(eventName, eventOptions);
+    const event = new CustomEvent(
+      eventName,
+      Object.assign(
+        {
+          bubbles: true,
+          cancelable: true,
+          composed: true,
+          detail: {}
+        },
+        eventOptions
+      )
+    );
+    console.log(
+      'boom',
+      Object.assign(
+        {
+          bubbles: true,
+          cancelable: true,
+          composed: false,
+          detail: {}
+        },
+        eventOptions
+      )
+    );
     this.dispatchEvent(event);
     return event;
   }
