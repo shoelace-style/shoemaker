@@ -6,6 +6,7 @@
   "author": "Cory LaViska",
   "license": "MIT",
   "main": "dist/shoemaker.js",
+  "module": "dist/shoemaker.js",
   "type": "module",
   "types": "dist/shoemaker.d.ts",
   "files": [
