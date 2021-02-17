@@ -319,7 +319,7 @@ Any truthy value will add the class or style and any falsey value will remove it
 
 #### More about templates
 
-There are some things you can't do in templates, such as using sparse attribute like `style="top:${x}; left${y}"` (instead, use ``style=${`top:${x}; left${y}`}``.
+There are some things you can't do in templates, such as using sparse attribute like `style="top:${x}; left${y}"` (instead, use ``style=${`top:${x}; left${y}`}``).
 
 I'll expand this section of the docs more later, but for now, refer to [uhtml's API docs](https://github.com/WebReflection/uhtml#api-documentation) for details.
 
