@@ -185,7 +185,7 @@ class MyComponent extends Shoemaker {
 
 If this syntax looks new to you, take a moment to read about [tagged templates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates) to better understand how they work.
 
-Note: If you're editor doesn't highlight the HTML in your templates, try using an extension such as [this one for VS Code](https://marketplace.visualstudio.com/items?itemName=bierner.lit-html);
+Note: If you're editor doesn't highlight the HTML in your templates, try using an extension such as [this one for VS Code](https://marketplace.visualstudio.com/items?itemName=bierner.lit-html).
 
 Note: By design, Shoemaker components _always_ contain a [shadow root](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot) for encapsulation purposes, so to allow children you should include a [`<slot>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot) element. If you're not sure how custom element slots work, it's a good idea to learn about them.
 
