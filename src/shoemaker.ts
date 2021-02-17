@@ -175,18 +175,6 @@ export abstract class Shoemaker extends HTMLElement {
         eventOptions
       )
     );
-    console.log(
-      'boom',
-      Object.assign(
-        {
-          bubbles: true,
-          cancelable: true,
-          composed: false,
-          detail: {}
-        },
-        eventOptions
-      )
-    );
     this.dispatchEvent(event);
     return event;
   }
