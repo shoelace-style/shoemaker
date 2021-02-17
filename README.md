@@ -90,7 +90,6 @@ Metadata is defined using the following static properties.
 - `props` - An array of prop names to be made reactive. That is, changing any of these props will trigger a rerender. Always use camelCase notation for props.
 - `reflect` - An array of prop names that will reflect their values to the corresponding DOM attribute (e.g. `myProp` ==> `my-prop`).
 - `styles` - A string containing the component's stylesheet. If you're using a bundler, it's possible to importing your CSS or SCSS as a string from separate files.
-- `dependencies` - An array of tag names that the component depends on (e.g. `['my-button', 'my-icon']`). Currently unused.
 
 In TypeScript, metadata is defined like this:
 

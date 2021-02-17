@@ -7,7 +7,6 @@ export { html, svg, Hole } from 'uhtml';
 
 export abstract class Shoemaker extends HTMLElement {
   static tag: string;
-  static dependencies: string[] = [];
   static props: string[] = [];
   static reflect: string[] = [];
   static styles = '';
