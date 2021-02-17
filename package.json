@@ -31,7 +31,7 @@
     "start": "rollup --config --watch",
     "build": "rollup --config",
     "clean": "rm -rf ./dist",
-    "prepublish": "npm run build"
+    "prepublish": "npm run clean && npm run build"
   },
   "dependencies": {},
   "devDependencies": {
