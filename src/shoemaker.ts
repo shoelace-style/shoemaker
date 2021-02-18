@@ -55,11 +55,14 @@ export abstract class Shoemaker extends HTMLElement {
   connectedCallback() {
     const { props } = this.constructor as typeof Shoemaker;
 
-    // Restore user-defined props before attribute are set. This prevents default values in components from being
+    // Restore user-defined props before attributes are set. This prevents default values in components from being
     // overridden during instantiation but still allows attributes to take precedence.
     Object.keys(this.initialProps).map((prop: string) => {
       (this as any)[prop] = this.initialProps[prop];
     });
+
+    // Once we've set the initial props, destroy them so they don't get applied if the component reconnects to the DOM
+    this.initialProps = {};
 
     // Sync attributes to props
     props.map(prop => {
