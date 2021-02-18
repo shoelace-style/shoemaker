@@ -16,7 +16,8 @@ export abstract class Shoemaker extends HTMLElement {
   }
 
   private initialProps: { [key: string]: any } = {};
-  private isMounted = false;
+  private isInitialized = false; // the component has been initialized, but may not be connected to the DOM
+  private isMounted = false; // the component has been initialized and is currently connected to the DOM
   private isRenderScheduled = false;
   private props: { [key: string]: any } = {};
 
@@ -72,6 +73,7 @@ export abstract class Shoemaker extends HTMLElement {
       }
     });
 
+    this.isInitialized = true;
     this.onBeforeMount();
     this.isMounted = true;
     this.renderToDOM();
@@ -154,7 +156,9 @@ export abstract class Shoemaker extends HTMLElement {
 
       return new Promise(resolve =>
         requestAnimationFrame(() => {
-          if (this.isMounted) {
+          // To perform a render, the component must be initialized but it doesn't necessarily have to be connected to
+          // the DOM. This prevents extra rerenders during initialization.
+          if (this.isInitialized) {
             this.renderToDOM();
             this.isRenderScheduled = false;
             resolve(null);
