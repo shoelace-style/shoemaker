@@ -148,9 +148,6 @@ The same props can be defined in JavaScript like this:
 
 ```js
 class MyComponent extends Shoemaker {
-  static tag = 'my-component';
-  static props = ['value', 'disabled']; // make them reactive
-
   constructor() {
     super();
     this.value = 0;
@@ -159,6 +156,10 @@ class MyComponent extends Shoemaker {
 
   // ...
 }
+
+MyComponent.tag = 'my-component';
+MyComponent.props = ['value', 'disabled']; // make them reactive
+
 ```
 </details>
 
