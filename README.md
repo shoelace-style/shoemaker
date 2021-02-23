@@ -122,7 +122,7 @@ MyComponent.styles = `...`;
 
 ### Props
 
-In Shoemaker, the term "prop" refers to a form of state that the user controls by setting HTML attributes or JavaScript properties on the element. The concept of attributes and properties can be confusing, so Shoemaker abstracts them into "props." Internally, Shoemaker only looks at properties, but it will automatically sync attribute changes to their corresponding properties for better DX. This means that the color attribute in <my-element color="blue"> will translate to `this.color = 'blue'` on the element instance and, if the attribute changes, `this.color` will update to match.
+In Shoemaker, the term "prop" refers to a form of state that the user controls by setting HTML attributes or JavaScript properties on the element. The concept of attributes and properties can be confusing, so Shoemaker abstracts them into "props." Internally, Shoemaker only looks at properties, but it will automatically sync attribute changes to their corresponding properties for better DX. This means that the color attribute in `<my-element color="blue">` will translate to `this.color = 'blue'` on the element instance and, if the attribute changes, `this.color` will update to match.
 
 By default, property changes will not reflect back to attributes. Thus, setting `this.color = 'tomato'` will update the property but not the attribute nor the DOM. You can modify this behavior by adding props to the `reflect` array. This can be useful if you intend to style your element with attribute selectors.
 
