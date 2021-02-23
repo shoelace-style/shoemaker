@@ -54,7 +54,7 @@ MyCounter.register(); // now you can use <my-counter></my-counter> in your HTML
 <details>
 <summary>JavaScript version</summary>
 
-Here's the same component in browser-friendly JavaScript looks like this.
+The same component in browser-friendly JavaScript looks like this.
 
 ```js
 import { Shoemaker, html } from '@shoelace-style/shoemaker';
@@ -89,7 +89,7 @@ Metadata is defined using the following static properties.
 - `tag` - The custom element's tag. Per the spec, this must start with a letter and contain at least one dash.
 - `props` - An array of prop names to be made reactive. That is, changing any of these props will trigger a rerender. Always use camelCase notation for props.
 - `reflect` - An array of prop names that will reflect their values to the corresponding DOM attribute (e.g. `myProp` ==> `my-prop`).
-- `styles` - A string containing the component's stylesheet. If you're using a bundler, it's possible to importing your CSS or SCSS as a string from separate files.
+- `styles` - A string containing the component's stylesheet. If you're using a bundler, it's convenient to import your CSS or SCSS as a string from separate files.
 
 In TypeScript, metadata is defined like this:
 
