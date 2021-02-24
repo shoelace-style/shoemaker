@@ -62,7 +62,7 @@ import { Shoemaker, html } from '@shoelace-style/shoemaker';
 export class MyCounter extends Shoemaker {
   constructor() {
     super();
-    count = 0;
+    this.count = 0;
   }
 
   render() {
