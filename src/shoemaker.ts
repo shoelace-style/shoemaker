@@ -16,7 +16,7 @@ export abstract class Shoemaker extends HTMLElement {
   }
 
   private initialProps: { [key: string]: any } = {};
-  private isInitialized = false; // the component has been initialized, but may not be connected to the DOM
+  private isInitialized = false; // the component has been initialized and may or may not be connected to the DOM
   private isMounted = false; // the component has been initialized and is currently connected to the DOM
   private isRenderScheduled = false;
   private props: { [key: string]: any } = {};
@@ -74,15 +74,15 @@ export abstract class Shoemaker extends HTMLElement {
     });
 
     this.isInitialized = true;
-    this.onBeforeMount();
+    this.onConnect();
     this.isMounted = true;
     this.renderToDOM();
-    this.onMount();
+    this.onReady();
   }
 
   disconnectedCallback() {
     this.isMounted = false;
-    this.onDestroy();
+    this.onDisconnect();
   }
 
   attributeChangedCallback(attrName: string, oldValue: string | null, newValue: string | null) {
@@ -133,13 +133,13 @@ export abstract class Shoemaker extends HTMLElement {
   /** Called after the component has been connected to the DOM and before the initial render. At this point, the
    * component's internals are not available in the DOM. This is a good place to fetch data and override initial props.
    */
-  public onBeforeMount() {}
+  public onConnect() {}
 
   /** Called after the component has initialized and the first render has occurred. */
-  public onMount() {}
+  public onReady() {}
 
   /** Called when the component is removed from the DOM. */
-  public onDestroy() {}
+  public onDisconnect() {}
 
   /** Renders the component. */
   public render(): Hole | string | undefined {

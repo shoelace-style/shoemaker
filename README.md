@@ -326,9 +326,9 @@ I'll expand this section of the docs more later, but for now, refer to [uhtml's 
 
 Shoemaker exposes intuitive lifecycle methods.
 
-- `onBeforeMount()` - Called when the component is connected to the DOM and all properties are set, but before the first render. This is a good place to fetch data and do other pre-render init. At this point, the component's internals are not yet available in the DOM.
-- `onMount()` - Called after the first render. 
-- `onDestroy()` - Called when the component is disconnected from the DOM. This is a good place to cleanup listeners, observers, etc.
+- `onConnect()` - Called when the component is connected to the DOM and all properties are set, but before the first render. This is a good place to fetch data and do other pre-render init. At this point, the component's internals are not yet available in the DOM.
+- `onReady()` - Called after the first render. 
+- `onDisconnect()` - Called when the component is disconnected from the DOM. This is a good place to cleanup listeners, observers, etc.
 
 ### Emitting events
 
