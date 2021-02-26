@@ -54,7 +54,7 @@ MyCounter.register(); // now you can use <my-counter></my-counter> in your HTML
 <details>
 <summary>JavaScript version</summary>
 
-Here's the same component in browser-friendly JavaScript looks like this.
+The same component in browser-friendly JavaScript looks like this.
 
 ```js
 import { Shoemaker, html } from '@shoelace-style/shoemaker';
@@ -62,7 +62,7 @@ import { Shoemaker, html } from '@shoelace-style/shoemaker';
 export class MyCounter extends Shoemaker {
   constructor() {
     super();
-    count = 0;
+    this.count = 0;
   }
 
   render() {
@@ -89,7 +89,7 @@ Metadata is defined using the following static properties.
 - `tag` - The custom element's tag. Per the spec, this must start with a letter and contain at least one dash.
 - `props` - An array of prop names to be made reactive. That is, changing any of these props will trigger a rerender. Always use camelCase notation for props.
 - `reflect` - An array of prop names that will reflect their values to the corresponding DOM attribute (e.g. `myProp` ==> `my-prop`).
-- `styles` - A string containing the component's stylesheet. If you're using a bundler, it's possible to importing your CSS or SCSS as a string from separate files.
+- `styles` - A string containing the component's stylesheet. If you're using a bundler, it's convenient to import your CSS or SCSS as a string from separate files.
 
 In TypeScript, metadata is defined like this:
 
@@ -122,7 +122,7 @@ MyComponent.styles = `...`;
 
 ### Props
 
-In Shoemaker, the term "prop" refers to a form of state that the user controls by setting HTML attributes or JavaScript properties on the element. The concept of attributes and properties can be confusing, so Shoemaker abstracts them into "props." Internally, Shoemaker only looks at properties, but it will automatically sync attribute changes to their corresponding properties for better DX. This means that the color attribute in <my-element color="blue"> will translate to `this.color = 'blue'` on the element instance and, if the attribute changes, `this.color` will update to match.
+In Shoemaker, the term "prop" refers to a form of state that the user controls by setting HTML attributes or JavaScript properties on the element. The concept of attributes and properties can be confusing, so Shoemaker abstracts them into "props." Internally, Shoemaker only looks at properties, but it will automatically sync attribute changes to their corresponding properties for better DX. This means that the color attribute in `<my-element color="blue">` will translate to `this.color = 'blue'` on the element instance and, if the attribute changes, `this.color` will update to match.
 
 By default, property changes will not reflect back to attributes. Thus, setting `this.color = 'tomato'` will update the property but not the attribute nor the DOM. You can modify this behavior by adding props to the `reflect` array. This can be useful if you intend to style your element with attribute selectors.
 
@@ -148,9 +148,6 @@ The same props can be defined in JavaScript like this:
 
 ```js
 class MyComponent extends Shoemaker {
-  static tag = 'my-component';
-  static props = ['value', 'disabled']; // make them reactive
-
   constructor() {
     super();
     this.value = 0;
@@ -159,6 +156,10 @@ class MyComponent extends Shoemaker {
 
   // ...
 }
+
+MyComponent.tag = 'my-component';
+MyComponent.props = ['value', 'disabled']; // make them reactive
+
 ```
 </details>
 
@@ -184,9 +185,9 @@ class MyComponent extends Shoemaker {
 
 If this syntax looks new to you, take a moment to read about [tagged templates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates) to better understand how they work.
 
-Note: If you're editor doesn't highlight the HTML in your templates, try using an extension such as [this one for VS Code](https://marketplace.visualstudio.com/items?itemName=bierner.lit-html).
+Note: If your editor doesn't highlight the HTML in your templates, try using an extension such as [this one for VS Code](https://marketplace.visualstudio.com/items?itemName=bierner.lit-html).
 
-Note: By design, Shoemaker components _always_ contain a [shadow root](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot) for encapsulation purposes, so to allow children you should include a [`<slot>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot) element. If you're not sure how custom element slots work, it's a good idea to learn about them.
+Note: By design, Shoemaker components _always_ contain a [shadow root](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot) for encapsulation purposes, so to allow children you should include a [`<slot>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot) element. If you're not familiar with how custom element slots work, now is a good time to [study up on them](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_templates_and_slots).
 
 #### Interpolation
 
@@ -318,7 +319,7 @@ Any truthy value will add the class or style and any falsey value will remove it
 
 #### More about templates
 
-There are some things you can't do in templates, such as using sparse attribute like `style="top:${x}; left${y}"` (instead, use ``style=${`top:${x}; left${y}`}``).
+There are some things you can't do in templates, such as using sparse attributes like `style="top:${x}; left${y}"` (instead, use ``style=${`top:${x}; left${y}`}``).
 
 I'll expand this section of the docs more later, but for now, refer to [uhtml's API docs](https://github.com/WebReflection/uhtml#api-documentation) for details.
 
