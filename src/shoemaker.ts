@@ -150,7 +150,7 @@ export abstract class Shoemaker extends HTMLElement {
    * Schedules a render. This is called automatically when props change, but you can force a re-render by calling it
    * arbitrarily. It's almost always a bad practice to rely on this method. Try to use props instead.
    */
-  async scheduleRender() {
+  public async scheduleRender() {
     if (!this.isRenderScheduled && this.isMounted) {
       this.isRenderScheduled = true;
 
