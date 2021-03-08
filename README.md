@@ -4,7 +4,7 @@ An elegant way to create web components.
 
 Created by [Cory LaViska](https://twitter.com/claviska).
 
-⚠️ This project is still in early beta and its API is subject to change. The documentation contained herein may be incomplete.
+⚠️ This project was a fun experiment, but it is no longer being developed or maintained.
 
 ## Overview
 
